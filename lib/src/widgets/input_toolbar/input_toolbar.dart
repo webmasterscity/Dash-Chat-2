@@ -67,6 +67,7 @@ class _InputToolbarState extends State<InputToolbar>
         padding: widget.inputOptions.inputToolbarPadding,
         margin: widget.inputOptions.inputToolbarMargin,
         decoration: widget.inputOptions.inputToolbarStyle,
+        height: widget.inputOptions.inputToolbarHeight,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
