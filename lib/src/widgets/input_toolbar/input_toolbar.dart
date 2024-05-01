@@ -22,8 +22,7 @@ class InputToolbar extends StatefulWidget {
   _InputToolbarState createState() => _InputToolbarState();
 }
 
-class _InputToolbarState extends State<InputToolbar>
-    with WidgetsBindingObserver {
+class _InputToolbarState extends State<InputToolbar> with WidgetsBindingObserver {
   late TextEditingController textController;
   OverlayEntry? _overlayEntry;
   int currentMentionIndex = -1;
@@ -32,8 +31,7 @@ class _InputToolbarState extends State<InputToolbar>
 
   @override
   void initState() {
-    textController =
-        widget.inputOptions.textController ?? TextEditingController();
+    textController = widget.inputOptions.textController ?? TextEditingController();
     focusNode = widget.inputOptions.focusNode ?? FocusNode();
     focusNode.addListener(() {
       if (!focusNode.hasFocus) {
@@ -72,8 +70,7 @@ class _InputToolbarState extends State<InputToolbar>
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            if (widget.inputOptions.leading != null)
-              ...widget.inputOptions.leading!,
+            if (widget.inputOptions.leading != null) ...widget.inputOptions.leading!,
             Expanded(
               child: Directionality(
                 textDirection: widget.inputOptions.inputTextDirection,
@@ -83,13 +80,10 @@ class _InputToolbarState extends State<InputToolbar>
                   enabled: !widget.inputOptions.inputDisabled,
                   textCapitalization: widget.inputOptions.textCapitalization,
                   textInputAction: widget.inputOptions.textInputAction,
-                  decoration: widget.inputOptions.inputDecoration ??
-                      defaultInputDecoration(),
+                  decoration: widget.inputOptions.inputDecoration ?? defaultInputDecoration(),
                   maxLength: widget.inputOptions.maxInputLength,
                   minLines: 1,
-                  maxLines: widget.inputOptions.sendOnEnter
-                      ? 1
-                      : widget.inputOptions.inputMaxLines,
+                  maxLines: widget.inputOptions.sendOnEnter ? 1 : widget.inputOptions.inputMaxLines,
                   cursorColor: widget.inputOptions.cursorStyle.color,
                   cursorWidth: widget.inputOptions.cursorStyle.width,
                   showCursor: !widget.inputOptions.cursorStyle.hide,
@@ -114,19 +108,14 @@ class _InputToolbarState extends State<InputToolbar>
                 ),
               ),
             ),
-            if (widget.inputOptions.trailing != null &&
-                widget.inputOptions.showTraillingBeforeSend)
-              ...widget.inputOptions.trailing!,
-            if (widget.inputOptions.alwaysShowSend ||
-                textController.text.isNotEmpty)
+            if (widget.inputOptions.trailing != null && widget.inputOptions.showTraillingBeforeSend) ...widget.inputOptions.trailing!,
+            if (widget.inputOptions.alwaysShowSend || textController.text.isNotEmpty)
               widget.inputOptions.sendButtonBuilder != null
                   ? widget.inputOptions.sendButtonBuilder!(_sendMessage)
                   : defaultSendButton(color: Theme.of(context).primaryColor)(
                       _sendMessage,
                     ),
-            if (widget.inputOptions.trailing != null &&
-                !widget.inputOptions.showTraillingBeforeSend)
-              ...widget.inputOptions.trailing!,
+            if (widget.inputOptions.trailing != null && !widget.inputOptions.showTraillingBeforeSend) ...widget.inputOptions.trailing!,
           ],
         ),
       ),
@@ -178,11 +167,9 @@ class _InputToolbarState extends State<InputToolbar>
     final RenderBox renderBox = context.findRenderObject() as RenderBox;
     final Offset topLeftCornerOffset = renderBox.localToGlobal(Offset.zero);
 
-    double bottomPosition =
-        MediaQuery.of(context).size.height - topLeftCornerOffset.dy;
+    double bottomPosition = MediaQuery.of(context).size.height - topLeftCornerOffset.dy;
     if (widget.inputOptions.inputToolbarMargin != null) {
-      bottomPosition -= widget.inputOptions.inputToolbarMargin!.top -
-          widget.inputOptions.inputToolbarMargin!.bottom;
+      bottomPosition -= widget.inputOptions.inputToolbarMargin!.top - widget.inputOptions.inputToolbarMargin!.bottom;
     }
 
     _clearOverlay();
@@ -194,10 +181,7 @@ class _InputToolbarState extends State<InputToolbar>
           bottom: bottomPosition,
           child: Container(
             constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height -
-                  bottomPosition -
-                  MediaQuery.of(context).padding.top -
-                  kToolbarHeight,
+              maxHeight: MediaQuery.of(context).size.height - bottomPosition - MediaQuery.of(context).padding.top - kToolbarHeight,
             ),
             decoration: BoxDecoration(
               border: Border(
@@ -208,7 +192,7 @@ class _InputToolbarState extends State<InputToolbar>
               ),
             ),
             child: Material(
-              color: Theme.of(context).selectedRowColor,
+              //color: Theme.of(context).selectedRowColor,
               child: SingleChildScrollView(
                 child: Column(
                   children: children,
